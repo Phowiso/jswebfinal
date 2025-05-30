@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Главная — Мебельный Мир</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .top-nav .nav-link {
+      color: #333;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .top-nav .nav-link:hover {
+      color: orange;
+    }
+
+    .top-nav .nav-link.active {
+      color: orange;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 120vw;
+      height: 120vh;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') no-repeat center center;
+      background-size: cover;
+      transform: translate(-10vw, -10vh);
+      transition: transform 0.05s ease-out;
+      z-index: -1;
+    }
+
+    main {
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    .welcome {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+
+    .welcome h1 {
+      color: white;
+      font-size: 3rem;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px 40px;
+      border-radius: 10px;
+    }
+
+    .qualities {
+      padding: 60px 20px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .qualities h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .quality-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .quality-item {
+      max-width: 300px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .quality-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .quality-item h3 {
+      color: #ff8c00;
+      margin-bottom: 10px;
+    }
+
+    .quality-item p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #eee;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link" id="nav-home">Главная</a>
+      <a href="catalog.html" class="nav-link" id="nav-catalog">Каталог</a>
+      <a href="contact.html" class="nav-link" id="nav-contact">Контакты</a>
+    </nav>
+  </header>
+
+  <div class="background" id="background"></div>
+
+  <main>
+    <section class="welcome">
+      <h1>Добро пожаловать в Мебельный Мир</h1>
+    </section>
+
+    <section class="qualities">
+      <h2>Наши качества</h2>
+      <div class="quality-list">
+        <div class="quality-item">
+          <h3>Надежность</h3>
+          <p>Мы производим мебель, которая служит годами и радует своей прочностью.</p>
+        </div>
+        <div class="quality-item">
+          <h3>Современный дизайн</h3>
+          <p>Следуем трендам и предлагаем стильные решения для вашего интерьера.</p>
+        </div>
+        <div class="quality-item">
+          <h3>Доступные цены</h3>
+          <p>У нас вы найдете идеальный баланс между ценой и качеством.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Мебельный Мир — Все права защищены</p>
+  </footer>
+
+  <script>
+    // Подсветка активной страницы
+    const path = window.location.pathname;
+    if (path.includes("index.html") || path === "/" || path === "") {
+      document.getElementById("nav-home").classList.add("active");
+    } else if (path.includes("catalog.html")) {
+      document.getElementById("nav-catalog").classList.add("active");
+    } else if (path.includes("contact.html")) {
+      document.getElementById("nav-contact").classList.add("active");
+    }
+
+    // Анимация фона по движению мыши
+    const bg = document.getElementById('background');
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+      bg.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+    });
+
+    // Клавиши для навигации
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        window.location.href = 'catalog.html';
+      } else if (e.key === 'ArrowLeft') {
+        window.location.href = 'contact.html';
+      }
+    });
+  </script>
+</body>
+</html>

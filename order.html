@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Оформление заказа — Мебельный Мир</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .top-nav .nav-link {
+      color: #333;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .top-nav .nav-link:hover {
+      color: orange;
+    }
+
+    .top-nav .nav-link.active {
+      color: orange;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    main {
+      padding-top: 100px;
+      padding-bottom: 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    select, input, textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      background-color: orange;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: darkorange;
+    }
+    html, body {
+     height: 100%;
+    }
+
+    body {
+     display: flex;
+     flex-direction: column;
+    }
+
+    main {
+     flex: 1;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #eee;
+      font-size: 0.9rem;
+      color: #555;
+      position: relative;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link" id="nav-home">Главная</a>
+      <a href="catalog.html" class="nav-link" id="nav-catalog">Каталог</a>
+      <a href="contact.html" class="nav-link" id="nav-contact">Контакты</a>
+      <a href="order.html" class="nav-link" id="nav-order">Заказ</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Оформление заказа</h1>
+    <form>
+      <div>
+        <label for="product">Выберите товар:</label>
+        <select id="product" name="product">
+          <option value="стул">Стул</option>
+          <option value="стол">Стол</option>
+          <option value="диван">Диван</option>
+          <option value="кресло">Кресло</option>
+          <option value="тумба">Тумба</option>
+          <option value="комод">Комод</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div>
+        <label for="phone">Номер телефона:</label>
+        <input type="text" id="phone" name="phone" required pattern="\d*" maxlength="15" placeholder="Только цифры" />
+      </div>
+
+      <div>
+        <label for="address">Адрес доставки:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+      </div>
+
+      <div>
+        <label for="payment">Способ оплаты:</label>
+        <select id="payment" name="payment">
+          <option value="наличными">Наличными при получении</option>
+          <option value="картой">Картой при получении</option>
+          <option value="онлайн">Онлайн оплата</option>
+        </select>
+      </div>
+
+      <input type="submit" value="Оформить заказ" />
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Мебельный Мир — Все права защищены</p>
+  </footer>
+
+  <script>
+    const path = window.location.pathname;
+    if (path.includes("index.html") || path === "/" || path === "") {
+      document.getElementById("nav-home").classList.add("active");
+    } else if (path.includes("catalog.html")) {
+      document.getElementById("nav-catalog").classList.add("active");
+    } else if (path.includes("contact.html")) {
+      document.getElementById("nav-contact").classList.add("active");
+    } else if (path.includes("order.html")) {
+      document.getElementById("nav-order").classList.add("active");
+    }
+
+    document.getElementById('phone').addEventListener('input', function (e) {
+      this.value = this.value.replace(/\D/g, '');
+    });
+  </script>
+</body>
+</html>

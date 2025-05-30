@@ -86,7 +86,18 @@
     button:hover {
       background-color: #0056b3;
     }
+    html, body {
+  height: 100%;
+    }
 
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -103,6 +114,7 @@
       <a href="index.html" class="nav-link" id="nav-home">Главная</a>
       <a href="catalog.html" class="nav-link" id="nav-catalog">Каталог</a>
       <a href="contact.html" class="nav-link" id="nav-contact">Контакты</a>
+      <a href="order.html" class="nav-link" id="nav-order">Заказ</a>
     </nav>
   </header>
 
@@ -128,7 +140,10 @@
       document.getElementById("nav-catalog").classList.add("active");
     } else if (path.includes("contact.html")) {
       document.getElementById("nav-contact").classList.add("active");
+    } else if (path.includes("order.html")) {
+      document.getElementById("nav-order").classList.add("active");
     }
+
   </script>
 </body>
 </html>
